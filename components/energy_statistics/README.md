@@ -14,7 +14,7 @@ Gather statistics for:
 external_components:
   - source:
       type: git
-      url: https://github.com/zdzichu6969/esphome_custom_components
+      url: https://github.com/zdzichu6969/esphome_components
     components: [ energy_statistics ]
     refresh: 0s
 ...

@@ -10,7 +10,7 @@ A collection of my ESPHome components.
 To use this repository you should confugure it inside your yaml-configuration:
 ```yaml
 external_components:
-  - source: github://zdzichu6969/esphome_custom_components
+  - source: github://zdzichu6969/esphome_components
 ```
 
 ## [Energy Production Statistics (PV)](components/energy_production_statistics)
@@ -23,7 +23,7 @@ Gather energy statistics. For energy meters.
 Uptime/Startup sensor based on timestamp.
 
 ## [Backup](components/backup/)
-Backup config yaml.
+Backup config yaml from esp www.
 
 ## [Energy Monitoring](components/energy_monitoring)
 
@@ -35,3 +35,6 @@ Show last crash log.
 
 ## [Heapmon](components/heapmon)
 Show heapsize entity.
+
+## [WiFi](components/wifi)
+The sorting of WiFi AP's with the same SSID name is in this custom component no longer based on priority. This makes a WiFi rescan, example below, to pick the AP with the strongest signal, regardless of priority.

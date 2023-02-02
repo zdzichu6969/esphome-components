@@ -1,4 +1,4 @@
-# Energy Statistics
+# Energy production statistics (clone of:)
 
 Gather statistics for (ex. PV):
 * today
@@ -12,7 +12,7 @@ Gather statistics for (ex. PV):
 external_components:
   - source:
       type: git
-      url: https://github.com/zdzichu6969/esphome_custom_components
+      url: https://github.com/zdzichu6969/esphome_components
     components: [ energy_production_statistics ]
     refresh: 0s
 ...

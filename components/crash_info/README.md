@@ -15,7 +15,7 @@ Copy stack frames and decode with `xtensa-lx106-elf-addr2line -aipfC -e $elf ...
 external_components:
   - source:
       type: git
-      url: https://github.com/zdzichu6969/esphome_custom_components
+      url: https://github.com/zdzichu6969/esphome_components
     components: [ crash_info ]
     refresh: 0s
 ...

@@ -73,7 +73,7 @@ From [lambdas](https://esphome.io/guides/automations.html#config-lambda), you ca
 external_components:
   - source:
       type: git
-      url: https://github.com/zdzichu6969/esphome_custom_components
+      url: https://github.com/zdzichu6969/esphome_components
     components: [ energy_tariffs ]
     refresh: 0s
   ...

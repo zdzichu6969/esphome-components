@@ -15,7 +15,7 @@ The configuration is very simple. Look at a sample below:
 external_components:
   - source:
       type: git
-      url: https://github.com/zdzichu6969/esphome_custom_components
+      url: https://github.com/zdzichu6969/esphome_components
     components: [ backup ]
     refresh: 0s
 ...
