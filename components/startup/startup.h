@@ -16,8 +16,6 @@ class StartupSensor : public sensor::Sensor, public PollingComponent {
   void loop() override;
   void update() override;
 
-  std::string unique_id() override { return get_mac_address() + "-startup"; };
-
   void set_time(time::RealTimeClock *time) { this->time_ = time; }
 
  protected:
