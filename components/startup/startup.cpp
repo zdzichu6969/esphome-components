@@ -10,7 +10,7 @@ namespace startup {
 static const char *const TAG = "startup";
 
 StartupSensor::StartupSensor() : start_(millis()) {
-  this->set_object_id((get_mac_address() + "-startup").c_str());
+  #this->set_object_id((get_mac_address() + "-startup").c_str());
 }
 
 void StartupSensor::dump_config() { LOG_SENSOR("", "Startup Sensor", this); }
