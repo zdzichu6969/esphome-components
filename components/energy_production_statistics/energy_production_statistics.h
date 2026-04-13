@@ -1,5 +1,8 @@
 #pragma once
 
+#include <cmath>
+#include <cstdint>
+
 #include "esphome/core/component.h"
 #include "esphome/core/preferences.h"
 
@@ -28,7 +31,7 @@ class EnergyStatistics : public Component {
 
  protected:
   ESPPreferenceObject pref_;
-  time::RealTimeClock *time_;
+  time::RealTimeClock *time_{nullptr};
 
   // input sensors
   Sensor *total_{nullptr};
@@ -45,15 +48,18 @@ class EnergyStatistics : public Component {
   int energy_production_month_start_day_{1};
 
   struct energy_production_data_t {
+    uint16_t current_year{0};
     uint16_t current_day_of_year{0};
     float start_today{NAN};
-    float start_yesterday{NAN};
+    float yesterday_value{NAN};
     float start_week{NAN};
     float start_month{NAN};
   } energy_production_;
 
   void process_(float total);
   void save_();
+  bool is_same_day_(const ESPTime &t) const;
+  bool is_next_day_(const ESPTime &t) const;
 };  // class EnergyStatistics
 
 }  // namespace energy_production_statistics

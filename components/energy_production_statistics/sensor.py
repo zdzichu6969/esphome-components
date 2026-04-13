@@ -1,13 +1,12 @@
-import esphome.config_validation as cv
 import esphome.codegen as cg
+import esphome.config_validation as cv
 from esphome.components import sensor, time
 from esphome.const import (
     CONF_ID,
     CONF_TIME_ID,
-    CONF_POWER,
     CONF_TOTAL,
     DEVICE_CLASS_ENERGY,
-    STATE_CLASS_TOTAL_INCREASING,
+    STATE_CLASS_MEASUREMENT,
     UNIT_KILOWATT_HOURS,
 )
 
@@ -31,32 +30,31 @@ CONFIG_SCHEMA = cv.Schema(
             unit_of_measurement=UNIT_KILOWATT_HOURS,
             accuracy_decimals=2,
             device_class=DEVICE_CLASS_ENERGY,
-            state_class=STATE_CLASS_TOTAL_INCREASING,
+            state_class=STATE_CLASS_MEASUREMENT,
         ),
         cv.Optional(CONF_ENERGY_YESTERDAY): sensor.sensor_schema(
             unit_of_measurement=UNIT_KILOWATT_HOURS,
             accuracy_decimals=2,
             device_class=DEVICE_CLASS_ENERGY,
-            state_class=STATE_CLASS_TOTAL_INCREASING,
+            state_class=STATE_CLASS_MEASUREMENT,
         ),
         cv.Optional(CONF_ENERGY_WEEK): sensor.sensor_schema(
             unit_of_measurement=UNIT_KILOWATT_HOURS,
             accuracy_decimals=2,
             device_class=DEVICE_CLASS_ENERGY,
-            state_class=STATE_CLASS_TOTAL_INCREASING,
+            state_class=STATE_CLASS_MEASUREMENT,
         ),
         cv.Optional(CONF_ENERGY_MONTH): sensor.sensor_schema(
             unit_of_measurement=UNIT_KILOWATT_HOURS,
             accuracy_decimals=2,
             device_class=DEVICE_CLASS_ENERGY,
-            state_class=STATE_CLASS_TOTAL_INCREASING,
+            state_class=STATE_CLASS_MEASUREMENT,
         ),
     }
 ).extend(cv.COMPONENT_SCHEMA)
 
 
 async def setup_sensor(config, key, setter):
-    """setting up sensor"""
     if key not in config:
         return None
     var = await sensor.new_sensor(config[key])
@@ -65,26 +63,20 @@ async def setup_sensor(config, key, setter):
 
 
 async def setup_input(config, key, setter):
-    """setting up input"""
     if key not in config:
         return None
     var = await cg.get_variable(config[key])
     cg.add(setter(var))
     return var
 
-# code generation entry point
+
 async def to_code(config):
-    """Code generation entry point"""
     var = cg.new_Pvariable(config[CONF_ID])
     await cg.register_component(var, config)
 
     await setup_input(config, CONF_TIME_ID, var.set_time)
-
-    # input sensors
-    await setup_input(config, CONF_POWER, var.set_power)
     await setup_input(config, CONF_TOTAL, var.set_total)
 
-    # exposed sensors
     await setup_sensor(config, CONF_ENERGY_TODAY, var.set_energy_production_today)
     await setup_sensor(config, CONF_ENERGY_YESTERDAY, var.set_energy_production_yesterday)
     await setup_sensor(config, CONF_ENERGY_WEEK, var.set_energy_production_week)
